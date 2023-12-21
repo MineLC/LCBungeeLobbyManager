@@ -1,5 +1,6 @@
 package lc.cbungeelobby.commands;
 
+import lc.bungeecore2.entities.Jugador;
 import lc.cbungeelobby.LCBungeeLobby;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -15,7 +16,7 @@ public class LobbyRemove extends Command {
     public void execute(CommandSender sender, String[] args) {
         if(sender instanceof ProxiedPlayer){
             ProxiedPlayer pp = (ProxiedPlayer) sender;
-            if(pp.hasPermission("lobby.remove")||pp.hasPermission("lobby.*")) {
+            if(Jugador.getJugador(pp).is_Admin()) {
                 if(args.length <=0){
                     pp.sendMessage(LCBungeeLobby.getInstance().getMessage("message.lobby.remove.arguments"));
                     return;

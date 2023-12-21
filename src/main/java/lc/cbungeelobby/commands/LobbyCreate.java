@@ -1,5 +1,6 @@
 package lc.cbungeelobby.commands;
 
+import lc.bungeecore2.entities.Jugador;
 import lc.cbungeelobby.LCBungeeLobby;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -15,7 +16,8 @@ public class LobbyCreate extends Command {
     public void execute(CommandSender sender, String[] args) {
         if(sender instanceof ProxiedPlayer){
             ProxiedPlayer pp = (ProxiedPlayer) sender;
-            if(pp.hasPermission("lobby.create")|| pp.hasPermission("lobby.*")){
+            Jugador jugador = Jugador.getJugador(pp);
+            if(jugador.is_Admin()){
                 ServerInfo sv = pp.getServer().getInfo();
                 if(LCBungeeLobby.getInstance().getLobbys().contains(sv.getName())){
                     pp.sendMessage(LCBungeeLobby.getInstance().getMessage("message.lobby.islobby"));

@@ -5,6 +5,7 @@ version = '2.0'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
     maven {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
@@ -13,6 +14,7 @@ repositories {
 
 dependencies {
     compileOnly "net.md-5:bungeecord-api:1.20-R0.1-SNAPSHOT"
+    implementation 'com.github.MineLC:LCBungeeCore:081b695912'
 }
 
 def targetJavaVersion = 8

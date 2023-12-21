@@ -16,19 +16,16 @@ public class LobbyList extends Command {
     public void execute(CommandSender sender, String[] args) {
         if(sender instanceof ProxiedPlayer){
             ProxiedPlayer pp = (ProxiedPlayer) sender;
-            if(pp.hasPermission("lobby.list")|| pp.hasPermission("lobby.*")){
-                pp.sendMessage(ChatColor.translateAlternateColorCodes('&', LCBungeeLobby.getInstance().getMessage("message.lobby.list.header")));
-                for(String sv : LCBungeeLobby.getInstance().getLobbys()){
-                    ServerInfo svi = LCBungeeLobby.getInstance().getProxy().getServerInfo(sv);
-                    int amount = svi.getPlayers().size();
-                    pp.sendMessage(ChatColor.translateAlternateColorCodes('&', LCBungeeLobby.getInstance().getMessage("message.lobby.list.message")
-                    .replaceAll("%lobby%", sv).replaceAll("%amount%", Integer.toString(amount))));
-                }
-                pp.sendMessage(ChatColor.translateAlternateColorCodes('&', LCBungeeLobby.getInstance().getMessage("message.lobby.list.footer")));
-
-            } else {
-                pp.sendMessage(LCBungeeLobby.getInstance().getMessage("message.nopermission"));
+            pp.sendMessage(ChatColor.translateAlternateColorCodes('&', LCBungeeLobby.getInstance().getMessage("message.lobby.list.header")));
+            for(String sv : LCBungeeLobby.getInstance().getLobbys()){
+                ServerInfo svi = LCBungeeLobby.getInstance().getProxy().getServerInfo(sv);
+                int amount = svi.getPlayers().size();
+                pp.sendMessage(ChatColor.translateAlternateColorCodes('&', LCBungeeLobby.getInstance().getMessage("message.lobby.list.message")
+                .replaceAll("%lobby%", sv).replaceAll("%amount%", Integer.toString(amount))));
             }
+            pp.sendMessage(ChatColor.translateAlternateColorCodes('&', LCBungeeLobby.getInstance().getMessage("message.lobby.list.footer")));
+
+
         }
     }
 }

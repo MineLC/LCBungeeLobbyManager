@@ -1,5 +1,6 @@
 package lc.cbungeelobby.commands;
 
+import lc.bungeecore2.entities.Jugador;
 import lc.cbungeelobby.LCBungeeLobby;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -14,7 +15,7 @@ public class LobbyReload extends Command {
     public void execute(CommandSender sender, String[] args) {
         if(sender instanceof ProxiedPlayer){
             ProxiedPlayer pp = (ProxiedPlayer) sender;
-            if(pp.hasPermission("lobby.reload")|| pp.hasPermission("lobby.*")){
+            if(Jugador.getJugador(pp).is_Admin()){
                 LCBungeeLobby.getInstance().reloadConfig();
 
                 pp.sendMessage(LCBungeeLobby.getInstance().getMessage("message.lobby.reload"));
